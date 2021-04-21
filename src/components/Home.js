@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { addToCart } from "../store/actions/cart-action";
 
-const Home = ({ items }) => {
+const Home = ({ items, addToCart }) => {
   const handleClick = (id) => {
-    console.log(id);
+    addToCart(id);
   };
 
   return (
@@ -50,15 +51,21 @@ const mapStateToProps = (state) => {
   };
 };
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    addToCart: (id) => {
+      dispatch(addToCart(id));
+    },
+  };
 };
 
 Home.defaultProps = {
   items: [],
+  addToCart: () => {},
 };
 
 Home.propTypes = {
   items: PropTypes.array.isRequired,
+  addToCart: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
