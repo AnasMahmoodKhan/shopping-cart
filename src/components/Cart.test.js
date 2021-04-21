@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { findByTestAttr, storeFactory, checkProps } from "../../test/testUtils";
-import Home from "./Home";
+import Cart from "./Cart";
 
 const setup = (
   initialState = {
@@ -14,12 +14,21 @@ const setup = (
         price: 110,
       },
     ],
-    addedItems: [],
-    total: 0,
+    addedItems: [
+      {
+        id: 1,
+        title: "Winter body",
+        desc:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.",
+        price: 110,
+        quantity: 1,
+      },
+    ],
+    total: 110,
   }
 ) => {
   const store = storeFactory(initialState);
-  const wrapper = shallow(<Home store={store} />)
+  const wrapper = shallow(<Cart store={store} />)
     .dive()
     .dive();
   return wrapper;
@@ -27,28 +36,21 @@ const setup = (
 
 describe("Home Component", () => {
   test("should render component without error", () => {
-    const component = findByTestAttr(setup(), "Home");
+    const component = findByTestAttr(setup(), "Cart");
     expect(component).toHaveLength(1);
   });
 
-  test("should render items  without error", () => {
-    const component = findByTestAttr(setup(), "box");
+  test("should render items without error when addedItems is not empty", () => {
+    const component = findByTestAttr(setup(), "addedItem");
     expect(component).toHaveLength(1);
   });
 
-  test("should not render items when items array is empty and should render `No items found!`", () => {
-    const box_component = findByTestAttr(setup({ items: [] }), "box");
-    expect(box_component).toHaveLength(0);
+  test("should not render items when addedItems array is empty and should render `Nothing Ordered yet.`", () => {
     const no_items_found_component = findByTestAttr(
       setup({ items: [] }),
-      "noitems"
+      "noAddedItems"
     );
-    expect(no_items_found_component.text()).toEqual("No items found!");
-  });
-
-  test("should render cards if items array not empty", () => {
-    const card_component = findByTestAttr(setup(), "card");
-    expect(card_component).toHaveLength(1);
+    expect(no_items_found_component.text()).toEqual("Nothing Ordered yet.");
   });
 });
 
@@ -57,6 +59,6 @@ describe("check PropTypes", () => {
     const expectedProps = {
       items: [],
     };
-    checkProps(Home, expectedProps);
+    checkProps(Cart, expectedProps);
   });
 });

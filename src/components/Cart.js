@@ -22,14 +22,14 @@ const Cart = ({ items, removeItem, addQuantity, subtractQuantity }) => {
   };
 
   return (
-    <div className="container">
+    <div className="container" data-test="Cart">
       <div className="cart">
         <h5>You have ordered:</h5>
         <ul className="collection">
           {items.length > 0 ? (
             items.map((item) => {
               return (
-                <li className="collection-item avatar" key={item.id}>
+                <li className="collection-item avatar" data-test="addedItem" key={item.id}>
                   <div className="item-img">
                     <img src={item.img} alt={item.img} className="" />
                   </div>
@@ -47,6 +47,7 @@ const Cart = ({ items, removeItem, addQuantity, subtractQuantity }) => {
                       <Link to="/cart">
                         <i
                           className="material-icons"
+                          data-test="AddClick"
                           onClick={() => {
                             handleAddQuantity(item.id);
                           }}
@@ -78,7 +79,7 @@ const Cart = ({ items, removeItem, addQuantity, subtractQuantity }) => {
               );
             })
           ) : (
-            <p>Nothing Ordered yet.</p>
+            <p data-test="noAddedItems">Nothing Ordered yet.</p>
           )}
         </ul>
       </div>
@@ -107,10 +108,16 @@ const mapDispatchToProps = (dispatch) => {
 
 Cart.defaultProps = {
   items: [],
+  removeItem: () => {},
+  addQuantity: () => {},
+  subtractQuantity: () => {},
 };
 
 Cart.propTypes = {
   items: PropTypes.array.isRequired,
+  removeItem: PropTypes.func,
+  addQuantity: PropTypes.func,
+  subtractQuantity: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
