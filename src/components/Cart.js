@@ -7,6 +7,7 @@ import {
   addQuantity,
   subtractQuantity,
 } from "../store/actions/cart-action";
+import Recipe from "./Recipe";
 
 const Cart = ({ items, removeItem, addQuantity, subtractQuantity }) => {
   const handleRemove = (id) => {
@@ -29,7 +30,11 @@ const Cart = ({ items, removeItem, addQuantity, subtractQuantity }) => {
           {items.length > 0 ? (
             items.map((item) => {
               return (
-                <li className="collection-item avatar" data-test="addedItem" key={item.id}>
+                <li
+                  className="collection-item avatar"
+                  data-test="addedItem"
+                  key={item.id}
+                >
                   <div className="item-img">
                     <img src={item.img} alt={item.img} className="" />
                   </div>
@@ -83,6 +88,7 @@ const Cart = ({ items, removeItem, addQuantity, subtractQuantity }) => {
           )}
         </ul>
       </div>
+      <Recipe />
     </div>
   );
 };
