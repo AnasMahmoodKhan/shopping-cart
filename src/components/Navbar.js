@@ -3,18 +3,22 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="nav-wrapper">
+    <nav className="nav-wrapper" data-test="Navbar">
       <div className="container">
-        <Link to="/" className="brand-logo">
+        <Link to="/" data-test="Logo" className="brand-logo">
           Shopping
         </Link>
 
         <ul className="right">
           <li>
-            <Link to="/">Shop</Link>
+            <Link data-test="shop" to="/">
+              Shop
+            </Link>
           </li>
           <li>
-            <Link to="/cart">My cart</Link>
+            <Link data-test="cart" to="/cart">
+              My cart
+            </Link>
           </li>
           <li>
             <Link to="/cart">
