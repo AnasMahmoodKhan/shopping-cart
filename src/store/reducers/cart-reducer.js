@@ -42,7 +42,7 @@ const cartReducer = (state = initState, action) => {
   }
 
   if (action.type === actionTypes.ADD_QUANTITY) {
-    let addedItem = state.items.find((item) => item.id === action.id);
+    let addedItem = state.addedItems.find((item) => item.id === action.id);
     addedItem.quantity += 1;
     let newTotal = state.total + addedItem.price;
     return {
