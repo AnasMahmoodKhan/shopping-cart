@@ -7,11 +7,11 @@ import Navbar from "./components/Navbar";
 const App = () => {
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="App" data-test="App">
         <Navbar />
         <Switch>
-          <Route path="/cart" component={Cart} />
-          <Route exact path="/" component={Home} />
+          <Route path="/cart" component={Cart} data-test="Cart" />
+          <Route exact path="/" component={Home} data-test="Home" />
         </Switch>
       </div>
     </BrowserRouter>
