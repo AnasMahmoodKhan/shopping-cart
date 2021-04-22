@@ -58,7 +58,10 @@ describe("check PropTypes", () => {
   test("does not throw warning with expected props", () => {
     const expectedProps = {
       items: [],
+      removeItem: () => {},
+      addQuantity: () => {},
+      subtractQuantity: () => {},
     };
-    checkProps(Cart, expectedProps);
+    checkProps(Cart.WrappedComponent, expectedProps);
   });
 });

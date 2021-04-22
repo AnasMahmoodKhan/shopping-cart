@@ -13,7 +13,7 @@ const Recipe = ({ total, addShipping, substractShipping }) => {
     }
   };
   return (
-    <div className="container">
+    <div className="container" data-test="Recipe">
       <div className="collection">
         <li className="collection-item">
           <label>
@@ -22,7 +22,7 @@ const Recipe = ({ total, addShipping, substractShipping }) => {
           </label>
         </li>
         <li className="collection-item">
-          <b>Total: {total} $</b>
+          <b className="Total">Total: {total} $</b>
         </li>
       </div>
       <div className="checkout">
@@ -34,7 +34,6 @@ const Recipe = ({ total, addShipping, substractShipping }) => {
 
 const mapStateToProps = (state) => {
   return {
-    addedItems: state.addedItems,
     total: state.total,
   };
 };
@@ -51,14 +50,12 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 Recipe.defaultProps = {
-  addedItems: [],
   total: 0,
   addShipping: () => {},
   substractShipping: () => {},
 };
 
 Recipe.propTypes = {
-  addedItems: PropTypes.array.isRequired,
   total: PropTypes.number.isRequired,
   addShipping: PropTypes.func,
   substractShipping: PropTypes.func,

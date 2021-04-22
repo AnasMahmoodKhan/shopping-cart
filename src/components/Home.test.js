@@ -56,7 +56,8 @@ describe("check PropTypes", () => {
   test("does not throw warning with expected props", () => {
     const expectedProps = {
       items: [],
+      addToCart: () => {},
     };
-    checkProps(Home, expectedProps);
+    checkProps(Home.WrappedComponent, expectedProps);
   });
 });
